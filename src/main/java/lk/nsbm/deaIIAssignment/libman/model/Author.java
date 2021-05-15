@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 @Getter
 @Setter
@@ -30,6 +31,13 @@ public class Author {
 
     @Column(name = "nic",nullable = false, unique = true)
     private String nic;
+
+    public boolean isValid() {
+        return firstName != null && !firstName.isEmpty()
+                && lastName != null && !lastName.isEmpty()
+                && address != null && !address.isEmpty()
+                && nic  != null && !nic.isEmpty() && Pattern.matches("[0-9]{9}(V|v|X|x)]",nic);
+    }
 
 //    @ManyToMany
 //    private Set<Book> books;

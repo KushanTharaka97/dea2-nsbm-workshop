@@ -35,6 +35,8 @@ public class Book {
     private Set<Author> authors;
 
     @OneToOne
+    @JoinColumn(name = "publisher_id", referencedColumnName = "id",
+    foreignKey = @ForeignKey(name = "fk_book_publisher"))
     private Publisher publisher;
 
 }

@@ -10,12 +10,9 @@ import javax.persistence.*;
 @Setter
 @Entity
 @EqualsAndHashCode
-@DiscriminatorValue(value = "2")
 public class Student extends User{
 private String studentId;
 
-    @OneToOne
-    private LendingPolicy lendingPolicy;
 
 
 }
