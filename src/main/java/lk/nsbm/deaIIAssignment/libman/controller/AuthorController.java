@@ -15,6 +15,7 @@ public class AuthorController {
         if (!author.isValid()){
 
             //something Return
+            return ResponseEntity.badRequest().build();
         }
         return null;
 
