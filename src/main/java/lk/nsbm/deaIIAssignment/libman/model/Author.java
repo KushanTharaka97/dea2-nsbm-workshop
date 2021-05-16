@@ -3,6 +3,7 @@ package lk.nsbm.deaIIAssignment.libman.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -26,19 +27,20 @@ public class Author {
     @Column(name = "last.name", nullable = false)
     private String lastName;
 
-    @Column(name = "address", nullable = false,length = 1024)
-    private String address;
-
-    @Column(name = "nic",nullable = false, unique = true)
-    private String nic;
+    @Column(name = "bio" , length = 1024)
+    private String biography;
 
     public boolean isValid() {
         return firstName != null && !firstName.isEmpty()
-                && lastName != null && !lastName.isEmpty()
-                && address != null && !address.isEmpty()
-                && nic  != null && !nic.isEmpty() && Pattern.matches("[0-9]{9}(V|v|X|x)]",nic);
+                && lastName != null && !lastName.isEmpty();
+//                && address != null && !address.isEmpty()
+//                && nic  != null && !nic.isEmpty() && Pattern.matches("[0-9]{9}(V|v|X|x)]",nic);
     }
 
-//    @ManyToMany
-//    private Set<Book> books;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "book_authors",
+            joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
+    private Set<Book> books;
 }
