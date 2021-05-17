@@ -19,6 +19,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "book_seq_gen")
     @SequenceGenerator(name = "book_seq_gen")
+    @Column(name = "id", unique = true,nullable = false,updatable = false)
     private Long id;
 
     @Column(name = "title")

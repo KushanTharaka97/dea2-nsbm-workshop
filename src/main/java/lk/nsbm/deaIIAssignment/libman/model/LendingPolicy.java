@@ -15,6 +15,7 @@ public class LendingPolicy{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "publisher_seq_gen")
     @SequenceGenerator(name = "publisher_seq_gen")
+    @Column(name = "id", unique = true,nullable = false,updatable = false)
     private Long id;
 
     @Column(name = "ref_count", nullable = false)
