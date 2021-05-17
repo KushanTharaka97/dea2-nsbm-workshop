@@ -17,8 +17,9 @@ public class AuthorManagementServiceImpl implements AuthorManagementService {
     }
 
     @Override
-    public Author update() {
-        return null;
+    public Author update(Author author) {
+        Author update = this.authorRepository.save(author);
+        return update;
     }
 
     @Override

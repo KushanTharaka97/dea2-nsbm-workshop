@@ -9,7 +9,7 @@ public interface AuthorManagementService {
 
     Author add(Author author);
 
-    Author update();
+    Author update(Author author);
 
     Author get(Integer id);
 
